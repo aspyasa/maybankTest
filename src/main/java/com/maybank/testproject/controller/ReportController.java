@@ -32,7 +32,6 @@ public class ReportController {
     @GetMapping("/all")
     public SuccessDto<List<ReportHistory>> getAll() {
         return reportHistoryService.getAll();
-
     }
 
     @GetMapping("/download/{key}")
@@ -46,6 +45,5 @@ public class ReportController {
     @GetMapping("/getDownloadHistory")
     public SuccessDto<List<DownloadHistory>> getDownloadHistory() {
         return reportHistoryService.getDownloadHistory();
-
     }
 }

@@ -13,7 +13,6 @@ import com.maybank.testproject.utils.ApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-
 import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.util.List;

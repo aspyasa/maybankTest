@@ -14,7 +14,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,7 +22,6 @@ import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class JasperServiceImpl implements JasperService {
@@ -68,14 +66,9 @@ public class JasperServiceImpl implements JasperService {
         String json = objectMapper.writeValueAsString(dtoList);
         List<Object> dataList = objectMapper.readValue(json, new TypeReference<List<Object>>(){});
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dataList);
-//        Map<String, Object> parameters = prepareReportParameters();
         return JasperFillManager.fillReport(jasperReport, new HashMap<>(), dataSource);
     }
-//    private Map<String, Object> prepareReportParameters() {
-//        Map<String, Object> parameters = new HashMap<>();
-//        parameters.put("reportTitle", "Judul Laporan");
-//        return parameters;
-//    }
+
     private byte[] exportToPdf(JasperPrint jasperPrint) throws JRException {
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }

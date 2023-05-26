@@ -17,9 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.core.io.Resource;
-
 import java.net.MalformedURLException;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +50,6 @@ class ReportHistoryServiceImplTest {
 
     @Test
     void export_ShouldReturnSuccessDtoWithReportHistory() throws MalformedURLException {
-        // Arrange
         SearchDto searchDto = new SearchDto();
         SearchResultDTO searchResultDTO = new SearchResultDTO();
         when(apiClient.searchUrl(searchDto)).thenReturn(searchResultDTO);
@@ -65,10 +62,8 @@ class ReportHistoryServiceImplTest {
         expectedReportHistory.setKeyDownload(UUID.randomUUID().toString());
         when(reportHistoryRepository.save(any(ReportHistory.class))).thenReturn(expectedReportHistory);
 
-        // Act
         SuccessDto<ReportHistory> result = reportHistoryService.export(searchDto);
 
-        // Assert
         assertEquals("SUCCESS", result.getMessage());
         ReportHistory actualReportHistory = result.getResult();
         assertNotNull(actualReportHistory);
@@ -82,14 +77,11 @@ class ReportHistoryServiceImplTest {
 
     @Test
     void getAll_ShouldReturnSuccessDtoWithReportHistoryList() {
-        // Arrange
         List<ReportHistory> reportHistoryList = Arrays.asList(new ReportHistory(), new ReportHistory());
         when(reportHistoryRepository.findAll()).thenReturn(reportHistoryList);
 
-        // Act
         SuccessDto<List<ReportHistory>> result = reportHistoryService.getAll();
 
-        // Assert
         assertEquals("SUCCESS", result.getMessage());
         assertEquals(reportHistoryList, result.getResult());
         verify(reportHistoryRepository).findAll();
@@ -97,7 +89,6 @@ class ReportHistoryServiceImplTest {
 
     @Test
     void getDownloadReport_WithValidId_ShouldReturnResource() throws MalformedURLException {
-        // Arrange
         String id = "report.pdf";
         ReportHistory reportHistory = new ReportHistory();
         Optional<ReportHistory> reportHistoryOptional = Optional.of(reportHistory);
@@ -109,10 +100,8 @@ class ReportHistoryServiceImplTest {
         Resource resource = mock(Resource.class);
         when(jasperService.downloadReport(reportHistory.getFileName())).thenReturn(resource);
 
-        // Act
         Resource result = reportHistoryService.getDownloadReport(id);
 
-        // Assert
         assertNotNull(result);
         verify(reportHistoryRepository).findByFileName(id);
         verify(downloadHistoryRepository).save(any(DownloadHistory.class));
@@ -121,25 +110,20 @@ class ReportHistoryServiceImplTest {
 
     @Test
     void getDownloadReport_WithInvalidId_ShouldThrowGlobalException() {
-        // Arrange
         String id = "invalid-id";
         Optional<ReportHistory> reportHistoryOptional = Optional.empty();
         when(reportHistoryRepository.findByFileName(id)).thenReturn(reportHistoryOptional);
 
-        // Act & Assert
         assertThrows(GlobalException.class, () -> reportHistoryService.getDownloadReport(id));
     }
 
     @Test
     void getDownloadHistory_ShouldReturnSuccessDtoWithDownloadHistoryList() {
-        // Arrange
         List<DownloadHistory> downloadHistoryList = Arrays.asList(new DownloadHistory(), new DownloadHistory());
         when(downloadHistoryRepository.findAll()).thenReturn(downloadHistoryList);
 
-        // Act
         SuccessDto<List<DownloadHistory>> result = reportHistoryService.getDownloadHistory();
 
-        // Assert
         assertEquals("SUCCESS", result.getMessage());
         assertEquals(downloadHistoryList, result.getResult());
         verify(downloadHistoryRepository).findAll();
