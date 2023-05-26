@@ -68,14 +68,14 @@ public class JasperServiceImpl implements JasperService {
         String json = objectMapper.writeValueAsString(dtoList);
         List<Object> dataList = objectMapper.readValue(json, new TypeReference<List<Object>>(){});
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dataList);
-        Map<String, Object> parameters = prepareReportParameters();
-        return JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+//        Map<String, Object> parameters = prepareReportParameters();
+        return JasperFillManager.fillReport(jasperReport, new HashMap<>(), dataSource);
     }
-    private Map<String, Object> prepareReportParameters() {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("reportTitle", "Judul Laporan");
-        return parameters;
-    }
+//    private Map<String, Object> prepareReportParameters() {
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("reportTitle", "Judul Laporan");
+//        return parameters;
+//    }
     private byte[] exportToPdf(JasperPrint jasperPrint) throws JRException {
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
