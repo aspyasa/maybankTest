@@ -5,9 +5,7 @@ import com.maybank.testproject.DTO.response.github.SearchResultDTO;
 import com.maybank.testproject.exception.GlobalException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,10 +25,21 @@ public class ApiClient {
         HttpHeaders headers = buildHttpHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
-        return restTemplate.exchange(url, HttpMethod.GET, requestEntity, SearchResultDTO.class).getBody();
+        ResponseEntity<SearchResultDTO> searchResultDTOHttpEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, SearchResultDTO.class);
+        return searchResultDTOHttpEntity.getBody();
     }
 
     private void validateSearchDto(SearchDto searchDto) {
+        if (searchDto.getPer_page() == null) {
+            searchDto.setPer_page(10);
+
+        } else if (searchDto.getSort() == null) {
+            searchDto.setSort("repository");
+        } else if (searchDto.getPage() == null) {
+            searchDto.setPage(1);
+        } else if (searchDto.getOrder() == null) {
+            searchDto.setOrder("desc");
+        }
         if (searchDto.getSearch() == null || searchDto.getSearch().isEmpty()) {
             throw new GlobalException("EMPTY_SEARCH", "Search cannot be empty");
         }
