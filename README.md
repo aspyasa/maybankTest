@@ -76,6 +76,63 @@ To import the Postman collection and test the API endpoints, follow these steps:
     
 
 ### Folder Structure and Purpose
+```
+.
+├── report
+├── src
+│   └── main
+│       ├── java
+│       │   ├── com.maybank.testproject
+│       │   ├── configuration
+│       │   │   └── JacksonConfig.java
+│       │   ├── controller
+│       │   │   └── ReportController.java
+│       │   ├── DTO
+│       │   │   ├── request
+│       │   │   │   └── SearchDto.java
+│       │   │   └── response
+│       │   │       ├── github
+│       │   │       │   ├── ItemDTO.java
+│       │   │       │   └── SearchResultDTO.java
+│       │   │       ├── FailedDto.java
+│       │   │       └── SuccessDto.java
+│       │   ├── exception
+│       │   │   ├── ControllerAdvice.java
+│       │   │   └── GlobalException.java
+│       │   ├── models
+│       │   │   ├── DownloadHistory.java
+│       │   │   └── ReportHistory.java
+│       │   ├── repositories
+│       │   │   ├── DownloadHistoryRepository.java
+│       │   │   └── ReportHistoryRepository.java
+│       │   ├── service
+│       │   │   ├── Impl
+│       │   │   │   ├── JasperServiceImpl.java
+│       │   │   │   └── ReportHistoryServiceImpl.java
+│       │   │   ├── JasperService.java
+│       │   │   └── ReportHistoryService.java
+│       │   └── utils
+│       │       └── ApiClient.java
+│       ├── TestProjectApplication.java
+│       ├── resource
+│       │   ├── static
+│       │   ├── template
+│       │   │   └── reporting.jrxml
+│       │   └── application.properties
+│       └── test
+│           └── java
+│               └── com.maybank.testproject
+│                   ├── ReportControllerTest.java
+│                   ├── ReportingHistoryServiceImplTest.java
+│                   └── TestProjectApplicationTest.java
+├── .gitignore
+├── HELP.md
+├── Maybank-Technical-Test.postman_collection.json
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── README.md
+```
 
 The folder structure of the Maybank Test application is as follows:
 
@@ -92,7 +149,50 @@ The folder structure of the Maybank Test application is as follows:
 -   `src/test/java`: Contains the unit tests for the application.
 -   `Maybank Technical test.postman_collection.json`: Contains the Postman collection for testing the API endpoints.
 
+## Class Details
+### configuration
+- JacksonConfig.java: This class contains the configuration for Jackson, which is a Java library for JSON serialization and deserialization.
 
+### controller
+- ReportController.java: This class represents the controller for handling report-related requests and responses.
+
+### request
+- SearchDto.java: This class represents the data transfer object (DTO) for the search request.
+
+### response github
+- ItemDTO.java: This class represents the DTO for an item in a GitHub search result.
+- SearchResultDTO.java: This class represents the DTO for the overall search result from GitHub.
+
+### response
+- FailedDto.java: This class represents the DTO for a failed response.
+- SuccessDto.java: This class represents the DTO for a successful response.
+- 
+### exception
+- ControllerAdvice.java: This class is an exception handler that provides centralized exception handling logic for controllers.
+- GlobalException.java: This class represents a global exception handler for handling exceptions thrown within the application.
+### models
+- DownloadHistory.java: This class represents a download history model.
+- ReportHistory.java: This class represents a report history model.
+
+### repositories
+- DownloadHistoryRepository.java: This class provides the repository for managing download history records.
+- ReportHistoryRepository.java: This class provides the repository for managing report history records.
+
+### service Implementation
+- JasperServiceImpl.java: This class implements the JasperService interface and provides the functionality for generating Jasper reports.
+- ReportHistoryServiceImpl.java: This class implements the ReportHistoryService interface and provides the functionality for managing report history.
+### service
+- JasperService.java: This interface defines the contract for generating Jasper reports.
+- ReportHistoryService.java: This interface defines the contract for managing report history.
+
+### utils
+- ApiClient.java: This class represents an API client used for making HTTP requests.
+
+### unit testing
+- ReportControllerTest.java: This class contains unit tests for the ReportController class.
+- ReportingHistoryServiceImplTest.java: This class contains unit tests for the ReportHistoryServiceImpl class.
+- TestProjectApplicationTest.java: This class contains tests for the TestProjectApplication class.
+These classes represent the main components of your project structure in IntelliJ IDEA. Each class is located in its respective package based on the directory structure mentioned in the project structure.
 
 
 ## Design Patterns
