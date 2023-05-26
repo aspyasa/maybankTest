@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "4b2e65e1-a9e9-488b-a9de-c297f2dca241",
+		"name": "Maybank Technical test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24200901"
+	},
+	"item": [
+		{
+			"name": "export",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/report/export?search=bom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"report",
+						"export"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "bom"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success export",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/report/export?search=bom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"report",
+								"export"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "bom"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "failed export when search is empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/report/export?search=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"report",
+								"export"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"EMPTY_SEARCH\",\r\n    \"errorCode\": \"Search cannot be empty\"\r\n}"
+				},
+				{
+					"name": "failed export when per page greater than 100",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/report/export?search=bom&per_page=102",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"report",
+								"export"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "bom"
+								},
+								{
+									"key": "per_page",
+									"value": "102"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"message\": \"PER_PAGE_LIMIT_EXCEEDED\",\r\n    \"errorCode\": \"Per page limit exceeded\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "getAll",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "success getAll",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/report/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"report",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 May 2023 19:32:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": [\n        {\n            \"id\": 1,\n            \"fileName\": \"5b06d6a5-7903-4f15-956f-367dbc7f9bff.pdf\",\n            \"exportDate\": \"2023-05-26T01:36:47.856\",\n            \"downloadUrl\": \"/report/download/5b06d6a5-7903-4f15-956f-367dbc7f9bff\",\n            \"keyDownload\": \"5b06d6a5-7903-4f15-956f-367dbc7f9bff\"\n        },\n        {\n            \"id\": 2,\n            \"fileName\": \"fa3cc565-90a6-4504-9080-d1486f81930e.pdf\",\n            \"exportDate\": \"2023-05-26T01:52:52.304\",\n            \"downloadUrl\": \"/report/download/fa3cc565-90a6-4504-9080-d1486f81930e\",\n            \"keyDownload\": \"fa3cc565-90a6-4504-9080-d1486f81930e\"\n        },\n        {\n            \"id\": 3,\n            \"fileName\": \"aac1e0db-995b-4e27-89ac-474fba5a192f.pdf\",\n            \"exportDate\": \"2023-05-26T02:00:05.056\",\n            \"downloadUrl\": \"/report/download/aac1e0db-995b-4e27-89ac-474fba5a192f\",\n            \"keyDownload\": \"aac1e0db-995b-4e27-89ac-474fba5a192f\"\n        },\n        {\n            \"id\": 4,\n            \"fileName\": \"a554a9d7-02dd-43f6-8ff3-7a4c853a81d4.pdf\",\n            \"exportDate\": \"2023-05-26T02:32:38.656\",\n            \"downloadUrl\": \"/report/download/a554a9d7-02dd-43f6-8ff3-7a4c853a81d4\",\n            \"keyDownload\": \"a554a9d7-02dd-43f6-8ff3-7a4c853a81d4\"\n        }\n    ],\n    \"message\": \"SUCCESS\"\n}"
+				}
+			]
+		},
+		{
+			"name": "download",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "success download",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/report/download/5b06d6a5-7903-4f15-956f-367dbc7f9bff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"report",
+								"download",
+								"5b06d6a5-7903-4f15-956f-367dbc7f9bff"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=5b06d6a5-7903-4f15-956f-367dbc7f9bff.pdf"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "13349"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 May 2023 19:35:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "%PDF-1.5\n%����\n4 0 obj\n<</Filter/FlateDecode/Length 2199>>stream\nx���[o�F\u0010���+��>��my)\u0010\u0014\b�\u0014��mZ�(P\u0014�,�2SYT)ʁc�wgd+2y�\u001c�h\u0004�����=�Cr�����׾�9*S�����ɛ�I\u0018;Je��b�����$p~��%�s���������sq=y���\u0007b=F��$�P��$��\u001f�N�O����HG�\u0018�\u001a\u000fR7\f��V���v7�2/8|�~��n�[9?�6e5[������\u001b���?�s��\u001f���q��c�z�\u0018c_�\u0010;Q�*:�>؇I(��U���;A�Ӈ\u0017�C�k@4o�Oi�a\u0012���>�(\t��\u0014L��\u001f�K�q���P�G�\u000e\u0002�Z��B�z�b�\u0014\u0012�\u001aC*\u0016#��k�\u0018\u0002�fcD�r�_�\u001fV\u0014\u001aâfcX��Y=�.w�j����\u0018\u00195\u001b#[V��\u0015#G\u0016�\u000f�ݩ�\u0018���\u0015��L!Q�1���v�\u0002\"�^b����q]��U�1��c\u0007\u0016����Y\u0010X�^�\u001dX�\u0019\u0003�f��m�}\u0001)�И��\u0018�V\u001f�U�С�\u001dYb���l�lw��WŦ\u001e;S(ߘ���\u0018YY-g���l�Ȕ1�s�1�*ߔ/a3�\u0019�>7\u001b\u0003���5\u001f\u0000c_P�Ƭ��=+6ϋ;}\u0000�\u001dXb���l\f����#ǔ�Ƽ���C������vl�'ʘ���\u001cؼ����x)N׿J_�g�\u001e3\u000b���\t�|\u001d�!��y\bW���!��^�rS�ud�m�[\u0014%���M\u001a��Y�qYm\f=L���1�J�8��ٻ�9a�\u0005��Ͽ~Y�!\f���yt��0ӎi��~x}�D���8ћ��l��N[1QO0����\u0016�`�ovW\bG3�m�j�r\u001a�I�x���^�:M���'<�ݨ�����4�t�ܰAk�}{\u0007� s�\u0006�:�\u0011�FQ�3�R�{\"E7\u0005�\u0004q��V�mKD4\u0012T/��\u0014�@��T�%\b\u00039�rJL�\u0006r�\u0004vjf�; ����`��\u0007�\u000bq��s��֡D0ZyJ��'\u0018-<g�S\u0017�oŬ\u0016�{ʽɸ؛D˽ɴԛ\f���t�7��8n�l�w���C�o�}��t\u001bk'*�\u001c *�rQ5=@T�Ţ\u0012,\u0017��\u0001�\u0012�!�\r�g4\u0010u�0-�\u001bD\u0007Y�z\r:�.��@:�������S\u001dC�\u000bv���\u0003\u001cC��1�\u001e�\u0018�Ŏ!X�\u0018��\u001c�, \u000e\u001c���\u000f]8�\u0003�e�8UZޡ���{ʥe\\,-�ri��J˰XZ�����Y\"iy��\u0001�!����ƳD���ô�7�\u0006ɠ<�1I��\\�c��\u0000�\u0010.w��\u00078�h�c\b�;��N�`\u001c8�q�\u0011��1E�>���7\u001e���ra\u0019\u0017\u000bK�\\X���2,\u0016��.aK\u001c\t\u0010vy�N�v\u000b�{\u000e�I�-�\u000e�\u0014�\u0001��I�\u001d\u0000�����\u001d:)|��:U��&ƁN���x[�N(�9@(��Biz�PD��\"X.\u0014�]B孭\u001aƁP���0m�\u0000\u0019\u0007��*�f�{DÓ멛����\u000e��{�q�\u0007��{�i�\u0007\u0018\u0016{�i���8����\u0002i`�K.\u0007!\u001aY����o���њ[\u000e��\u0013� ׳�֪�Ӭ�\u0018G�]O4Ƴ'�L�\u0010\u0005q�/�\u0004^\u0006�$�ݩ�\u0013�'��(5�\fʼ}\u0003O� uT�iK�PE%���1�ɫ̪�a~��i�Oϊ=�����{I�ZG�\u000f�\u001ae�\u001a9z*�\u0018��fc��/�]6��^H�_ߴ�\u0016�@���wc�5\n\u000fs�c\u000f>^e���ă&l(�9\u001bJ<��\r(��i4����).���VA�A&� \u001cƭs�v1�\u0007���:e�Ճz�d;� ����9���\u0006�A4;wqO��r\u0013rWw�\t���܄̵�RΆ4�֚�6���ʗ��T�9���6�۩E=�Z�\n\u0015R�*T��6�@,:_��\u001fB�4\u0012�N�\u001bL\u0003��_{��\u001c�^\u000f��C�[{�)?R\u0018\u0017\u001f)L��\u0014��G\n��#���#�\u0019\r��t��$�A\"~��>\u000f>H\u0012�ا�\u000f��\u0000\u001f\u0010.�\u0001�r\u001fhz�\u000f����h�\u000f�\u001e�\u0003\u000f�5�� �E���\u001b.�!:MZ{�]Ŭ�\u0001^�Ǩ��c�s��\b�{�h��4=�cD�=F��cD#��s��:\f��d�\u001f�^�\f\u0007&\u001b�5\\�yt����Q��s\r����q�k�\u0016��h�k�\u0016��i�k�F��?�\u000eq`���K�4�0��Z皇)\\\u0014��6v廞��Mw��n�\u0004o\u001f\u0018�}\u0003<F��c�?�cD�=F��cDC���\u0006\u0010Gg�Mm[��y3�tE��V^��r/0.�\u0002�b/\u0010-�\u0002�b/0-�\u0002��\u000beeW$�y��(���t�\u0003�Uxө��8@Z���:�Ux˩CZ���:�Ux�i�oȌ�m\u0016\u0019/.��N[�9@[���\u0012-�V�\u0003�%Z�-�rm�F��_2�8H�\u000f�\r�\"!\u000e.\u0014��c����e8�s��m���6��mô�6D�mô�6L�m�4N\tT��8��XP�\u0012���\u001e;�P5��o�(v�Tj,��=/�\u0019b�fcLֵў��LA��]%�R�r>�\u001e�S�<����\u0003�9zH��N�_����\u001fϾ�ix~?�I�@�z����\u0012}�\t�a�����[7���\tǪ`x<B\u0018�~f\u001e��2�?��'�\u0015\u0004�qN�%\u001a�\u0003����\nendstream\nendobj\n1 0 obj\n<</Tabs/S/Group<</S/Transparency/Type/Group/CS/DeviceRGB>>/Contents 4 0 R/Type/Page/Resources<</ColorSpace<</CS/DeviceRGB>>/Font<</F1 2 0 R/F2 3 0 R>>>>/Parent 5 0 R/Rotate 90/MediaBox[0 0 595 842]>>\nendobj\n7 0 obj\n<</Filter/FlateDecode/Length 2607>>stream\nx���oo��\u0011���S�e�\"\u0012�-I\u0015\b\u000e-.W\\\u0001���W�(\nC�i��,����g�wgd)6��h���Cl����p�g���Ra\u0010\u0005� \f��؟���&<�$Y`�<8��|<��2��?��%.\f\u000e���d�S\u0014Dap~=y���\u001bb�#�a�t�FQ\u0011��I\u001e���f5����&H��EД�뗇���L�l���0!7��������A�`\u0005\u000e����W\u001c�>�,�B�V1��j�x�0�\u0002�f1�M}U^�\u001fV��aQ�\u0018��a�[4\u0017��z�ȊT�����V�sl�ȑ���dwj\u0016#\u001b?Y�=�\u0014\u00125�!}�ݮ�@�$̥��Y��^��e�\u001d;��\u0010\u0003�fE`�f5v`�\\\f��e�W���\r�L\u0013q��f1��\u001d�MyeC\u001b;�\\��Y���r�l����3���I�����f��T�-Ə̈�>7��5�]�\u001663sq��f1����\u0000\u0018��\"\u0011g}n>��eY=�\u00010v`�8�s�\u0018���\u001c9�<\u0012�}n��d�+/\u0016W�c�>7���r`˺�f��{�;6y��s{�<�\u001f�կu��&6�c\b��\u0010.���c\b/{����^����'��;e1�8��\u001d\r�\u0002Ѥ\u0003��d1��\u001f���p/\u0010����i��p\u0014M�\u0016|��?����tn�Ң�~��\u0007���I_�\u001f�&���Ť|����:\u0011QO���}�\u0016� 5�U��r�p���m�,kH��lvv:�ve\"<K�i\u000b�og��\u0018�i>MZ4Y7�p\u0012M�\u0016���\u0007/��h��\u0010^�rO��]E:A\u001chj��vE\"\u001aIj�nE�4�t;�3\u0018������)��~��I=A2���B\u001c$si]�\u0019\u001e\u0004�\\�來0H����\u0003�Wj���g��}F��gLk}ư�g�k\u001c\t�9�O��\u0006S���k�q�O&��C&��2Y��LD�e\"��L�;d�����\u00062��f��\u000b�#3�Zt�\\��Dt2�O�\u0016�|\u001b�\u0001z���\u0000���\u0001��\u001e�t\u000f\u000f\u0010��\u0000�.\u000f�*�\u0003\u000flw�'\u0017���\u001a*\u0016��x��=�b1�\u0016�h�XLk�b�%�\u0016ƍ��%�'�\u0015$V�u�\u001b\f�oO���C4\u001a��`\u000f�\u001e��\u001e����\u0003��=`�\u001e\u001e Z�\u0001��\u001e��8���b\u001cā\u0007�z3���\u000bq^RqO�T���\"Z/\u0015�Z�\u0018vIU��\u0006R�\u0006g��>�r�\u001e�7��Ցy��]\u001d�7��\u0015g��'W�|ӹ�`\u001cd��\u001e�zZJ�K=��z����t��\u0013�N=��ԗ\u000f\u0010\u0007����Y�B�8����a�|�4�H\r]�K|W\u000e��^U�ժ\u0012�W�i��\f�\u0007\u0014�@���<���\u0017\\f�4\u0010u�P�5|Q�__d�� �(/\u001e�z��zU\n�+��Q�i�:Ƌ?�)I\u0011>/�ۃ����ݩ\\�-I�\t�r�ج:�=�˄�q���fW�\u0010���Q���� �9�h\u0012��2�Fy�wVR�\u00178�0�G\u000e���\u000f��_hs�\u001c��l��w�\r�N7\u001f��\u001b\bGEg2\\�g?B6�;S����9L�c\u000e�\f$���$Je\u0006�H�̀R)�\u0019P2�e\u0006�N��\u0010\u0017\u0019.3D���Υ��F�DưI;W�$��[;\"8):\u0017\u0016��ĉMWG\u0013\u0014p���2u�ܨ;�p����'2��ށ��w o��\u001d�[�\u0019]\u0006\u0010��u��\u0001H\u0003k�F�\u0010P�A�������@*�����j�9��Rt���{3\f��\u000b�\u0002�H��\u0013OŃc����f9��sO�\u0018a\\=F�V�\u0011��c�h�\u0018a\u001a��\u0019m׃<���j��Q��\u001e�V��S\\��C\\���\u0012�\u0017�h����!.�}�%\u001e�[9B\u0001�W�\u0007��㸳dL� �:ω\r��}\u0019��9�z�p\u000e�z�\u0010�w\u000e�z�X��s�v8gUun?\u0019\u0007��W���\f�w|�H'��\u001e�px�mU����=�V`\\m\u0005��V`Zm\u0005��V`�a���s�g\u001cXa_��牜@5�o\u0010\u0006s\bר�G��Zc���\u0013[��{\u0010n�sX�\u0017\u0003��V\u000f�\u0011�w\u0018�z�Y��Èv9����8pXk;�+\u001c8̳\u0002vb���\b1޺�g\u0004�7\u0002�j#0�6\u0002�j#\u0010�7\u0002�\u000e#�\r�pd��u5����]��=t5x��]�롫��<\u000e]\r^�q�j�\u001a\u000f�\nv\u00170�nCG\u0017v������',��!,�za��\u000bK�^XK�\u0010�h���\u0003Ɓ��� �\u001c��\\\u001b\u001c�*Ne(�\u000b���\u0005��\u0002�j/0��\u0002�j/\u0010��\u0002��A�Y%f\u001cx���>�h`���Kc[!�:\u000b��¢�\u0004��≗����Y�ɻ\u000ey�� )(sj}ƣl��\r��8�!d�q�\r�(�J��\u0017�\u000b����0���{ĥ�������쮎�\u001fq��?�\u0018�E'N�\u0014I4\u0007\u0005Gt�i60\u001a*���\n�(\u001cg\u0001\u0011e�����7\b��4�`\u00011\n�{)�9�{GrR�� J�P\u0010D�\u0011\n�(9� J�P\u0010�;^;2\bλ;M^:���\"��H�\u0013��.�!�܅5�����4��h�C4��\\w':K\u0002}\u001c\u0013��3��k�(�꒧@�\u0013\b$�Ӑ@TN�\fa�\u000f_W�y$\u001a��H���>C\u0013I�\u001c�DrO��\u0019W;�i�әV;�h�ӉT;�`�t���CeJ\u000b_��g\u000f�\b��D�^&��2YZ)�%�2Y��d*�2Q�\u001e2\u0011���h�LD�e��R&K�e�0����e�LT\u0017�{�eb\\-\u0013�j��V�D�N&\"�2\u0011\fe�m�P��S�3Rݤ�N��u\"Z�\u0013�z�,��ɒz��ȡ\u0013}��@�h\u0015�O&�q�LL�ebZ-\u0013�:��T�D0��nFyg�S%�x�t�(z�d�s��F�C%\u0003\u001f;�J\u0006>s:T�0T���i�L��W&��C&��2\u0011���h�L�V�dI�L\u0016�2�z\te�\u000bC~2qO�L��ebZ-\u0013�j����D�Z&�\u001d�iYz}�Uk�^�i�W�䃌�\n�|\u0014�W�L����������L\u0018��en'��_��z�W�p8<�&(�8x\u001f�\\��sڢ:M���\u001c�C����.0Cӕ��h.\u001f䯋U\u0019�A}=t5*���SS]-\u001e�8\u000b��W\u0018'}u�\u001f\u0012\u0006��\nendstream\nendobj\n6 0 obj\n<</Tabs/S/Group<</S/Transparency/Type/Group/CS/DeviceRGB>>/Contents 7 0 R/Type/Page/Resources<</ColorSpace<</CS/DeviceRGB>>/Font<</F1 2 0 R/F2 3 0 R>>>>/Parent 5 0 R/Rotate 90/MediaBox[0 0 595 842]>>\nendobj\n9 0 obj\n<</Filter/FlateDecode/Length 2409>>stream\nx��\\�o��\u0011����\u001f�\u000f��$�?\n\u0004\u0005�6\u0005\n$mZߡ@Q\u0018�D�Lm�%e�R����\"�D>.�K�\b.6n�hg�=�rw�\t<�](/�t������\u0017\u001f.\u0017Q�i�{��ş.\u0017_\u0016��\u0017���\u000b�#��~���<\u0015x�7�w���J�� �a'F��J��$\u0007��a���v��ږ;���ۂ��׿��\r��?I�\u0006&)7\u0013gPA80Ů�\u0014W�牣�yVO����z��N��\u0003Sm�\u0013�\nC=0��pB���9n��w3�-\nҁ�n���깨��3řh�r��:S�\u000fi�l��\fً����\u0018�����5u�t�,4��ͺ.\u001f�S\u0005��Py���jW�o5}*=T!�⡚�*�\u000f\u0015��ر*���h�>�ź(��*�Δ\u000eU����b�$�\u001a�\u0010M�/�V���bH�P�h�U-���\u0018\u001bZ�u�y�]d�S���Њ\u0015G~\u001e��\u0010��\u0010'xzt��,L���N�sTg�;s\u0015f�$�&�,�A�\u001d\b���\u0016�\u0015D+�-�cS�����[#xYR��:E� �r3�%^\u0019�.m^��s�!6\u0003\u000e�L�^�5�����99\u0000Zo�\u0001�RS�:>�!\ba�L��[\u001dj^�\u000fu��v�\r�C����I�Ro���|�q��K�\u0000�\\:�5��X��3?��<�\u001e\u001ej_�~�}����߰ylvWQx0>�\u000bŉ-�����\u001d8\u0019�ݸ7\u0017O+�m���Dټ�Q����\u001e\u0006\u001d�\u0014t_��:�ώ�\u001f׬������?~I:k\u0014Y\u0001����5\u0004G�������%\u0004+�n��?=���Q��:>Ǿ?w\u000e͒|̡��n\u0012iܚ����������%H�a{�@8H��-����\u0010\u000e�I��Bh���ޔ\u0012�K+��ȏ[��~���!:I����o��`���\u00056OKNOA6j�^���\fV5�ϥ����*P�h�I2l�$�P�\f \u001cH����j��@1�S�\u0019�F�i��^\u0013\u001a\b�G\u0014l:�8�?O�٧a��%���\u000b�C8���|K:_W\u0006��\\n��4`���sI\u001b�W)�Y'�<�L��K��b)3Z,eB˥�h(e�\u0004u�д��� \u001cT>�S3\u001b�f\u001b�Jl�}6�q7b�r\u0004�\u0004�\u0013Kh9�\u0006=�XBˈ%�\bb\t��=9�<CG�W-���ц\u0018�U�\u0007-���ئ\u001a�ϵ����TC�#TCp�j\b-W�A�P\r�e�!d�j�e�y��@5��p\b\u0001�@7W��\u0010\u0016\u0019�q��\f���֡��\f�R.\u0003��e�h�\f\b-�\u0001�E2`d�\f��\n\f�\u001b`J\u0002�\u0003\u0015<�N��\u0019\u0018Ԏ�%��Ct\u0010\u001aY��gWW��;.\u001ewSW���}�\"�\\]���ˠG���2u\u0011�O]�\u0010\r���\u0001\u0004�@\\e�����zG�\u0007O\u001ew\u0012\u0001[�E�p�\b\u0018-\u0016\u0001��\"`�H\u0004��\u0011A��\u0000\"��Ω��jף\u0014�\u001c���G)=�j|��é�')=�j|�\u00028��\u0010�8���u�\u0006�>T�����GB\u001ew#�,G�Jp9����j�#H%��TB���=�g4 �N�_�\u000f\u0010\u000e�u]>��� \u001a<\u000b̽�S�¦\u0017\u001ew�\u000b[���p�^\u0018-�\u000b��za�H/�\u0014\u0017\u0001F\u0003�\u001c.\r@4�?�}\u0006�\u0006r����Մ�\u0019m��]-?��3�Ot���\u0013\u000f[}�Y�5N�)lN���\u001e:�Q~ r��rD���\u0006�y�/L\u0003�/\u001f��뎜�Jǝ�w��ln��_ՀCY��\u0002]<�P��\u0013ݡ�ݟ��\u001c�1\u0017FY�1��>��\\\u0018����/���\u0007���S���I�����\u001am(1�F\u001bJ��ц���hCٱ4�T\u001e�F[\u0006�i�Y\u001eH�]�\u0010Xg��!O{.&�8�,\u000eN-9\u0017�����>[\"��{f����\u0019\"��g��o���!0�����\u0007р����ZM�y'K�wK�\f坺e\u001f \u0018����n�\t\f�>úA-\u001b�찥\\�\f\u0017���bU2Z�J\u0002�U�h��%�цpP�f����\u0014Y�`��r�\b-g��b�\fx\u0004S�\u001e�\u0014�\u0011S�7<����S�Igk1�\rOG\u0019��\b\u0019\u0010\\.\u0003B�e@h�\f\fx�\f\b\re��:@8���,��<�d�xeK9�\f\u0017��h1����J`9�����%\u0010\u000ex-z/\u001b#Z-����{��Ǝ2H�f��\u001a\u001a!\u0003B�e@h�\f\fx�\f\b�e�x��@\u0005���`�P\u0006�ol������3�U��Ye��UFKY%��UFCV�ڭ��j�8&_�l���2#��񮻿)#O��{��k�羅=tF���\u001c/58�D�#X\"��%B�Y\"��%\u0003\u001e�\u0012�!Kt�\rр����\u0010\b\u0007��i�7C܈eK9�\f\u0017\u0013�h1���\u0012K`9�������\u000eU\f\u0007���^��\u0015�^c�5\u001d:Wqm\\�:\u0011�I�;\u0011�ւ}\u0016�ւ�u�\\\u001dz\rQ��.R�,�\"��%��7׏�ja�\u0012�}{q�F��8n\u0006��g:\b�KH��0��q�\u0007\u001c=��;HV��:\u001d���Fǌ��X�7�V�m-\t\u0010\u0001w$� ��\u0011���Kbh�)1d�\u0012c\u0016���B�\u0000̨[\u0000�\u0010\u0004���3G@ǥ�\u0011ШS\u0004d�6\u0014�I�%\u00003�\u0016�1|�\u0000��\u0016�\u0019u\u000b�\u0018�M\u0000t\u0016�\u001f\u0000�:\u0005@�o\u0014@�l\u0001�\u0003\u000b��8�m\u0002��{\u00004�\u0014\u0000\u0019�Q\u0000ڶBҨ[\u0000\u001a��? �<�\u0005`F�\u00020�o\u0013\u0000mS�\u0003�Q�\u0000���\u0002H��#Jk�d\r�\u0007]����F�\u001e��\u000b^\u0016���b�\u0007�޳���\u0012�������\t�83���N��׻�?�>�8=A�����\u000b��~=,MͶ5�M�������m�w��?�p:C\u0014�*�O�ն�\"���z�\"���.7�o���D?�PvQ���_\u0001�L��\nendstream\nendobj\n8 0 obj\n<</Tabs/S/Group<</S/Transparency/Type/Group/CS/DeviceRGB>>/Contents 9 0 R/Type/Page/Resources<</ColorSpace<</CS/DeviceRGB>>/Font<</F1 2 0 R/F2 3 0 R>>>>/Parent 5 0 R/Rotate 90/MediaBox[0 0 595 842]>>\nendobj\n11 0 obj\n<</Filter/FlateDecode/Length 2566>>stream\nx���ko��\u0015���W�c�a)ކ�\u0002A�»�\u0014��u�.�u3\u001dYt)�Aj��#ɉ8�\u001c\rG\u0014\u0016Y\u0005�g���\u001cr�p\u0014\u0005q�C\u001cD������q���_nFi\u001e(U\u00057�я7�_GI�W�W��@�<��?�A\u001c\u00057�ѻ?�<\u0010�\r�/��*��2Пi����v9J��\u0014*���e��G��\u000fA��\n�|w�d���u�w�fY��Q�\u0004\u0007����\u0003w\u000f)����U\f��\r\u001cO\u001c%R@�,F�nf�����R1,j\u0016Ú�L�����]\r\u001dY���Q�\u0018ٲ��V\u000f\u001cY�?$�S�\u0018���J�����Y\f�~�����iTHqq�\u0018עY����v3t`Y)\u0006F�\u000e����Ё��\u0018\u00185˶�7��\u0005��Rq��f1���\u0016��L�6td�8�s�\u001c���f��OۡG\n\u0015��>7��5�r���?\u0019>2%���,F�Ο�K�LU���b`���/��\u001f(Rq���\u0013\u0019���\u0017}\u0001\f\u001dX!���,\u0006���4\u001f8�\"\u0016�}n�/�z;���\u001e��}��q�����M떭\u0013�˪\b���Qd�.��ϒ�?�Dfy��RͿ�Dv|\u0012\u000f����p\u0012Gݒ\",��7����\u0007��qXt���_��t�qby@\u0015ϵ݄�z{o�\u0001u\u0004g�|�����\u0006�;m���\u001a�Y�]ԡ��y\u001cC��B�u\"\u0019�*J ��a֡�$��\u0002�\b�\u000e�>��#�^�<ÏĢJ$��]�=\u0001�\bT�<>o \rTҏ���\u001dL��us��s�\u0015��b~�u�\u001fH�>�gӖL��\f}��T�?�*�\u000f�>f���f`��\f���0^@\u001a\\���\n��5{�Y�0Zr�Wꩣ{��z��H=Ѷ�א\u0006�_/_��\u0016�`������4�4\u000e��{�_/1)<�'\rpV�+utו�\u001e�jܪ�\u0012�@W�ξ�����\u0003e7��z6�\u0000<�=\b��78n�\u0011�;:\u000b���\u0000�[\u0005�\u0018�g\u001c(���W���8\u0010���6\u001f�\u0018\u0006W��ױ�IB\u001a\\Y��Rm�~��f/Y����D��U�vY!�\u001e/��\u0001i �Ӷn�C߮����~\u0019��O���s��v�>���7�\u0006�o��'S�b2թ��-�\nO�,�Tx�dK��3%N�1�0\r�I��K���;.�{��:����\u001e�Ը5��c)� �\\@3�{�����/�)����e�!�\u000bo�R��\u0014wtV�iw�\bw7>���\\Q�4\u0010jvK�QH\u0003��n�ԑf�߮���龼���[���iU\t\u0002m��K�,V�Щc�\u001a\u00025�6pmN5�\u0017��~�����2�2#�1\f=Kԙ�PeN�����\u001c��P<���/+��f\u0018d��cv}\u0003a\u0015\u001bF�\u0014�r�\u0011©2|\u001e���,=�����i��1,Ρ�얖�Q�q��p7�@\u001c$�J�S�Y�i�\u001d*AnCS&���|>���\u0018�\u0015�(5�\u00012��^���0��\u0013���=��8�;�W\r�G}�����=��O5)\nq�>�]L9�\u0006���Ŝ@1\r�ߌw�#���\u0015\u000f�\u0010\u0007��~��Nm�3��\u0013d�V+&\u001cd���\u001bc��4���Nc��p��ݭ��\u001cQ��/G��ݡ�;;�ig�2�á̻;�q���1�\r\bGC���$�:��^Գ�^���E��^D�ы�\u001ez\u0011�C/�[���%�#\u001a�S��{�O5Q*�:�-��kB�)�z��z�0\u0003��f ��\fD�1\u0003�=�@��\f�\u001a\u0016��\u0019v�`�r�<��o%�S��S�{��˸��L;��t\u000fu�wW�q����\u0004�H�]�\u0019\u0006�ĥ2�W\b�+������2��U�sMS��\u0014ZMS����4����hw�\u0010��4��0\r�6�<#\u001ayf��\u001eāg|�؝������][Ɲ�e�Y[�{h˼���[�mZ�nN8\u0012�l��ﴟ{��J�i�E*�g�\u0016�\u0014��[�Rx�o�J�y?I\u0005V�\bGR�\u0015�;\u0005uO��g\u000f�\bw׊hw���\u0015�=�\"ܢ��x��h$ծ�o*K8\u00182���\u0005��>{��~6���6`��\u0006L;ۀ�\u001e6`��\u0006�[/Y�\u000eH8�����G4����s�-NՂ��]:=\u000fB/\u0017�\u0007YLV\u001b�7�;o\n�G�è�\n���p����T��+���H��kd�\u001a�����\u0004-��Ud\\p���'��^>!xj\u0015��UYU`\u0001\u0006\u0005\u001fU\u0003�NK\u001a����<7��ۖkP��嚸�����AV��8w�I]C6K�Q���%^\u0002?�0�A\u0012�]L����\u0012),�T\n�;(���\u001d�Oay'Nr��c:��82�\u0019tiD\b�2�Q}x\u0019��q���&-\u001eռ_H�^�V\u0000�{Y�zB��ׄ�e�kB�1�5!�͘�kH\u0003ì�\u001f�i��}�Z\u001d7�%_�D�\u0017��P�iI��\u000e@0�=����\u0011J���u����+���K���Ȍ;\u001b�ig#3�ld�-FƯ꣑���>\u0018�.�tK�v?Yu�>�\u0012�.+��\u0012�.+��\u0012m�\u0015n\u0003\u0000��w\u0001\u0014�1\u0003�o\u0002�\u0013c\u001e|�=\u0000o�\u0001��s��ct�>�!��1D�;�hw�\u0010ms\f�`�\u001c#m0\u0000�����o�\u0001�]�'.��!.���2�,.���2m\u0013\u0017�@��~s�\u0015�@۱u�\u0002\u0018\u000f.�\u0017A�����\u0003\u0005��\n�J=<@��\u0007�v�\u0000��\u001e \u001ax���\u0001X�b\u001b\u001d��\b�{IK={H˸��L;K˴��Lۤő\u0000i/��B�J��\u001a�g\u001f�\u0014�5�הzH�p��\"�\u0006�\n7��B�4��hn��J��\u0015��Z\u0011��\u0015��Z\u0011m�\n�\u0000AZ\t;@Аi�\u0000\u0002�\u0017��!�6���\u0004Գ�\t\u0018w6\u0001��&`��\u0004L;_�L�\u000bֺ�\u0004x���\u0004x�o\u001d��O�t���e'�\u0002��N'~\u0002G���Ř�W�N���\u0014�:Uu�Z�R�g݃��\u0007�?�����ᔚy\u001c�\u000f��_W�ߎ��pxBUPFI�\u0003�����(�\r�P�����n��K�]p�^�\"�¸�\u000f���r\u001edA�8�XI\"\u001f秶�M�\u0004I\u001e\\�G��}u�\u0003���\u0011\nendstream\nendobj\n10 0 obj\n<</Tabs/S/Group<</S/Transparency/Type/Group/CS/DeviceRGB>>/Contents 11 0 R/Type/Page/Resources<</ColorSpace<</CS/DeviceRGB>>/Font<</F1 2 0 R/F2 3 0 R>>>>/Parent 5 0 R/Rotate 90/MediaBox[0 0 595 842]>>\nendobj\n13 0 obj\n<</Filter/FlateDecode/Length 565>>stream\nx����n�0\u0010E���Y�\u000b+$%�Ҷ@S�@�>�+\nC�hU�\u001e.�8H��{9L�XE0qZzaS�ќ��� `%��ʕ��t�\u0007{]�8\u0005�r(*��`\u001f��w�+�q����]^\t\u0010\u001c�-�xU|���\u0010�2\u001e�\u0010\u0019�1�R\u001dF[3�ޢ\u0015$X?\u0003k���\u0004�������|(ý�/ڡnz,ʡ~��n�<��H���P%��*0���\u0002�2I�\u000f�Y��Jb\u0012\u000be\u0012�ܗSi�7�\rM�%$\u0019�$Ym\u001fؚ�d�\r�vG�$\u000b?Y�\u0015��P&��M]{�E�����Lrm��\u001dn�\u001dC�%\u0019\t��\t`M_�\u0006�r\u0012\fez�7�4�a)��4y/�`�;��T\u000e-4�&���4������n\n�\u0014J���e�l�u�7?��d��}/�d��sl3����e\u0012��M�\u000f@�\u000bEL�������i��\u0000�\u0006Ӥ�{�\u0004��v&0�\u0016��{�>��d�eՅ��Z���e\u001al3��f���Ҡs\r�X�S�Љ]:�0g���I��\u000f=$�\u001e~]�靛X�I\u001de>�1��I�.\u001aWp�2�)�����!�C�������ǖ}^�a.��\n2w9^a�O����i\r2�ܴ,��\b�-�N@��n:�\u0010'���\"\u001f�ڀ�a������\\٦*���\u000e���e��u�\u0003����\nendstream\nendobj\n12 0 obj\n<</Tabs/S/Group<</S/Transparency/Type/Group/CS/DeviceRGB>>/Contents 13 0 R/Type/Page/Resources<</ColorSpace<</CS/DeviceRGB>>/Font<</F1 2 0 R/F2 3 0 R>>>>/Parent 5 0 R/Rotate 90/MediaBox[0 0 595 842]>>\nendobj\n14 0 obj\n[1 0 R/XYZ 0 605 0]\nendobj\n15 0 obj\n[6 0 R/XYZ 0 605 0]\nendobj\n16 0 obj\n[8 0 R/XYZ 0 605 0]\nendobj\n17 0 obj\n[10 0 R/XYZ 0 605 0]\nendobj\n18 0 obj\n[12 0 R/XYZ 0 605 0]\nendobj\n2 0 obj\n<</Subtype/Type1/Type/Font/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>\nendobj\n3 0 obj\n<</Subtype/Type1/Type/Font/BaseFont/Times-Roman/Encoding/WinAnsiEncoding>>\nendobj\n5 0 obj\n<</Kids[1 0 R 6 0 R 8 0 R 10 0 R 12 0 R]/Type/Pages/Count 5>>\nendobj\n19 0 obj\n<</Names[(JR_PAGE_ANCHOR_0_1) 14 0 R(JR_PAGE_ANCHOR_0_2) 15 0 R(JR_PAGE_ANCHOR_0_3) 16 0 R(JR_PAGE_ANCHOR_0_4) 17 0 R(JR_PAGE_ANCHOR_0_5) 18 0 R]>>\nendobj\n20 0 obj\n<</Dests 19 0 R>>\nendobj\n21 0 obj\n<</Names 20 0 R/Type/Catalog/Pages 5 0 R/ViewerPreferences<</PrintScaling/AppDefault>>>>\nendobj\n22 0 obj\n<</ModDate(D:20230526013647+07'00')/Creator(JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e)/CreationDate(D:20230526013647+07'00')/Producer(OpenPDF 1.3.30.jaspersoft.1)>>\nendobj\nxref\n0 23\n0000000000 65535 f \n0000002282 00000 n \n0000011963 00000 n \n0000012051 00000 n \n0000000015 00000 n \n0000012141 00000 n \n0000005172 00000 n \n0000002497 00000 n \n0000007864 00000 n \n0000005387 00000 n \n0000010714 00000 n \n0000008079 00000 n \n0000011564 00000 n \n0000010931 00000 n \n0000011781 00000 n \n0000011817 00000 n \n0000011853 00000 n \n0000011889 00000 n \n0000011926 00000 n \n0000012218 00000 n \n0000012382 00000 n \n0000012416 00000 n \n0000012521 00000 n \ntrailer\n<</Info 22 0 R/ID [<d30d1000996952900dbc9a771ae451ae><4971aaf0c4a8c131b88787e84d5e4143>]/Root 21 0 R/Size 23>>\nstartxref\n12738\n%%EOF\n"
+				},
+				{
+					"name": "Failed when key not valid",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8088/report/download/888888",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"report",
+								"download",
+								"888888"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 May 2023 19:43:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"KEY_NOT_FOUND\",\n    \"errorCode\": \"Key Not Valid\"\n}"
+				}
+			]
+		},
+		{
+			"name": "getDownloadHistory",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8088/report/export?search=",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8088/report/export?search=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"report",
+						"export"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
